@@ -10,19 +10,18 @@ namespace CoffeeShop.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double PriceInCents { get; set; }
+        public int PriceInCents { get; set; }
 
 
-        public Item(string name, double priceInCents)
+        public Item(string name, int priceInCents)
         {
             Name = name;
             PriceInCents = priceInCents;
         }
 
-        public string PriceInDollars()
+        public double PriceInDollars()
         {
-           string price = Math.Round(PriceInCents, 2).ToString();
-            return price;
+            return PriceInCents / 100;
         }
     }
 }
