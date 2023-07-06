@@ -63,5 +63,60 @@ namespace CoffeeShop.Tests
 
             Assert.Equal(3, items.Count);
         }
+
+        [Fact]
+        public void OrderTotalReturnsTotalforOrder()
+        {
+            Item item1 = new Item("coffee", 100);
+            Item item2 = new Item("coffee", 100);
+            Item item3 = new Item("coffee", 100);
+            Order order1 = new Order();
+
+            order1.AddItem(item1);
+            order1.AddItem(item2);
+            order1.AddItem(item3);
+
+            double total = order1.Total();
+
+            Assert.Equal(3.00, total);
+        }
+
+        //customer tests
+
+        [Fact]
+        public void CustomerPropertiesCreated()
+        {
+            Customer customer1 = new Customer("Eli");
+
+            Assert.Equal("Eli", customer1.Name);
+            Assert.Equal(0, customer1.Orders.Count);
+        }
+
+        [Fact]
+        public void AddOrderAddsOrder()
+        {
+            Customer customer1 = new Customer("Eli");
+            Order order1 = new Order();
+
+            customer1.AddOrder(order1);
+
+            Assert.Equal(1, customer1.Orders.Count);
+
+        }
+
+        [Fact]
+        public void AllOrdersRetursnAllOrders()
+        {
+            Customer customer1 = new Customer("Eli");
+            Order order1 = new Order();
+            Order order2 = new Order();
+
+            customer1.AddOrder(order1);
+            customer1.AddOrder(order2);
+
+            var orders = customer1.AllOrders();
+
+            Assert.Equal(2, orders.Count);
+        }
     }
 }
